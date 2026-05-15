@@ -1,0 +1,35 @@
+﻿# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Build
+bin/
+obj/
+*.obj
+*.exe
+*.dll
+*.pdb
+*.cache
+*.log
+
+# Rider/IDE
+.idea/
+
+# Package
+packages/
+*.nupkg
+
+# NuGet
+.nuget/
+PackageCache/
+
+# Visual Studio Code
+.vscode/
+
+# Others
+*.db
+*.DS_Store
+Thumbs.db

@@ -8,5 +8,6 @@ namespace Bookshop_Management_System.Controler
 {
     internal class Billing
     {
+
     }
 }
