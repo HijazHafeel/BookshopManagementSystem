@@ -35,27 +35,27 @@ namespace Bookshop_Management_System.model
                 Console.WriteLine("❌ General Error: " + ex.Message);
             }
         }
-        public static SqlDataReader Search(string sql)
+        public static DataTable Search(string sql)
         {
+            DataTable dt = new DataTable();
+
             try
             {
                 if (conn == null || conn.State == ConnectionState.Closed)
                 {
                     NewConnection();
                 }
+
                 SqlCommand cmd = new SqlCommand(sql, conn);
-                return cmd.ExecuteReader();
-            }
-            catch (SqlException ex)
-            {
-                Console.WriteLine("❌ SQL Error in Search: " + ex.Message);
-                return null;
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
             }
             catch (Exception ex)
             {
-                Console.WriteLine("❌ General Error in Search: " + ex.Message);
-                return null;
+                Console.WriteLine("❌ Error in Search: " + ex.Message);
             }
+
+            return dt;
         }
 
         public static void Save(string sql)
