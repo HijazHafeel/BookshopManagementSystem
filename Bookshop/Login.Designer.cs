@@ -92,7 +92,7 @@ namespace Bookshop_Management_System.Bookshop
             // 
             this.llblFPd.AutoSize = true;
             this.llblFPd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.llblFPd.Location = new System.Drawing.Point(319, 298);
+            this.llblFPd.Location = new System.Drawing.Point(413, 298);
             this.llblFPd.Name = "llblFPd";
             this.llblFPd.Size = new System.Drawing.Size(180, 25);
             this.llblFPd.TabIndex = 7;
