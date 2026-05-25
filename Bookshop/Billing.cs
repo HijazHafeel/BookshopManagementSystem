@@ -61,5 +61,10 @@ namespace Bookshop_Management_System.Bookshop
         {
 
         }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
