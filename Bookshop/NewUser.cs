@@ -24,7 +24,10 @@ namespace Bookshop_Management_System.Bookshop
 
         private void NewUser_Load(object sender, EventArgs e)
         {
+            cmbRole.Items.Add("Admin");
+            cmbRole.Items.Add("Staff");
 
+            cmbRole.SelectedIndex = 0;
         }
 
         private void panel3_Paint(object sender, PaintEventArgs e)
@@ -51,5 +54,39 @@ namespace Bookshop_Management_System.Bookshop
         {
 
         }
+
+        private void btnSignUp_Click(object sender, EventArgs e)
+        {
+            if (txtFName.Text == "" ||
+               txtUname.Text == "" ||
+               txtPass.Text == "" ||
+               txtConPass.Text == "")
+            {
+                MessageBox.Show("Please fill all required fields");
+                return;
+            }
+
+            if (txtPass.Text != txtConPass.Text)
+            {
+                MessageBox.Show("Passwords do not match");
+                return;
+            }
+
+            string sql =
+                "INSERT INTO Users " +
+                "(Username, Password, FullName, Email, Role) " +
+                "VALUES ('" +
+                txtUname.Text + "','" +
+                txtPass.Text + "','" +
+                txtFName.Text + "','" +
+                txtEmail.Text + "','" +
+                cmbRole.Text + "')";
+
+            model.myconn.Save(sql);
+
+            MessageBox.Show("User Registered Successfully");
+        }
+
+
     }
 }
