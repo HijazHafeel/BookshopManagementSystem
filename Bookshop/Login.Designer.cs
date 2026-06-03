@@ -34,13 +34,11 @@ namespace Bookshop_Management_System.Bookshop
             this.txtPass = new System.Windows.Forms.TextBox();
             this.llblFPd = new System.Windows.Forms.LinkLabel();
             this.llblReg = new System.Windows.Forms.LinkLabel();
-            this.lblDisp = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
             this.btnLogin = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
@@ -92,7 +90,7 @@ namespace Bookshop_Management_System.Bookshop
             // 
             this.llblFPd.AutoSize = true;
             this.llblFPd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.llblFPd.Location = new System.Drawing.Point(725, 346);
+            this.llblFPd.Location = new System.Drawing.Point(533, 345);
             this.llblFPd.Name = "llblFPd";
             this.llblFPd.Size = new System.Drawing.Size(180, 25);
             this.llblFPd.TabIndex = 7;
@@ -111,18 +109,6 @@ namespace Bookshop_Management_System.Bookshop
             this.llblReg.TabStop = true;
             this.llblReg.Text = "Register";
             // 
-            // lblDisp
-            // 
-            this.lblDisp.AutoSize = true;
-            this.lblDisp.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDisp.Location = new System.Drawing.Point(383, 150);
-            this.lblDisp.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.lblDisp.Name = "lblDisp";
-            this.lblDisp.Size = new System.Drawing.Size(210, 20);
-            this.lblDisp.TabIndex = 9;
-            this.lblDisp.Text = "Enter Username Password";
-            this.lblDisp.Click += new System.EventHandler(this.lblDisp_Click);
-            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.label2);
@@ -137,7 +123,7 @@ namespace Bookshop_Management_System.Bookshop
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.AliceBlue;
+            this.label2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label2.Location = new System.Drawing.Point(33, 38);
             this.label2.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label2.Name = "label2";
@@ -177,17 +163,6 @@ namespace Bookshop_Management_System.Bookshop
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox1.Location = new System.Drawing.Point(340, 345);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(148, 26);
-            this.checkBox1.TabIndex = 12;
-            this.checkBox1.Text = "Remember Me";
-            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // label4
             // 
@@ -241,8 +216,6 @@ namespace Bookshop_Management_System.Bookshop
             this.ClientSize = new System.Drawing.Size(942, 573);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.lblDisp);
-            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.llblReg);
@@ -275,13 +248,11 @@ namespace Bookshop_Management_System.Bookshop
         private System.Windows.Forms.TextBox txtPass;
         private System.Windows.Forms.LinkLabel llblFPd;
         private System.Windows.Forms.LinkLabel llblReg;
-        private System.Windows.Forms.Label lblDisp;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.Label label3;

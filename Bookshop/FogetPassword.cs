@@ -16,5 +16,10 @@ namespace Bookshop_Management_System.Bookshop
         {
             InitializeComponent();
         }
+
+        private void txtUname_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
