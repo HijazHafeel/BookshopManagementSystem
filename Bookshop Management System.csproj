@@ -124,8 +124,14 @@
     <EmbeddedResource Include="Bookshop\Book.resx">
       <DependentUpon>Book.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Bookshop\FogetPassword.resx">
+      <DependentUpon>FogetPassword.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Bookshop\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Bookshop\NewUser.resx">
+      <DependentUpon>NewUser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Bookshop\Staff.resx">
       <DependentUpon>Staff.cs</DependentUpon>

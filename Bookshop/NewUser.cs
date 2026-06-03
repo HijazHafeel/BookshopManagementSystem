@@ -16,5 +16,15 @@ namespace Bookshop_Management_System.Bookshop
         {
             InitializeComponent();
         }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void NewUser_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
