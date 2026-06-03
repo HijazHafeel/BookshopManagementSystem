@@ -26,5 +26,30 @@ namespace Bookshop_Management_System.Bookshop
         {
 
         }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void txtUname_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblPass_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtPass_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -41,9 +41,9 @@ namespace Bookshop_Management_System.Bookshop
             this.panel2 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.btnLogin = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -145,7 +145,6 @@ namespace Bookshop_Management_System.Bookshop
             this.label2.TabIndex = 13;
             this.label2.Text = "Please Login to Your Account";
             this.label2.TextAlign = System.Drawing.ContentAlignment.BottomRight;
-            this.label2.Visible = false;
             // 
             // label1
             // 
@@ -157,7 +156,6 @@ namespace Bookshop_Management_System.Bookshop
             this.label1.Size = new System.Drawing.Size(186, 29);
             this.label1.TabIndex = 12;
             this.label1.Text = "Welcome Back";
-            this.label1.Visible = false;
             // 
             // panel2
             // 
@@ -191,21 +189,6 @@ namespace Bookshop_Management_System.Bookshop
             this.checkBox1.Text = "Remember Me";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.label3.Location = new System.Drawing.Point(463, 461);
-            this.label3.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(277, 22);
-            this.label3.TabIndex = 14;
-            this.label3.Text = "------------------OR----------------";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.BottomRight;
-            this.label3.Visible = false;
-            this.label3.Click += new System.EventHandler(this.label3_Click_1);
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -219,7 +202,6 @@ namespace Bookshop_Management_System.Bookshop
             this.label4.TabIndex = 14;
             this.label4.Text = "Don\'t have an account";
             this.label4.TextAlign = System.Drawing.ContentAlignment.BottomRight;
-            this.label4.Visible = false;
             this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // btnLogin
@@ -234,6 +216,20 @@ namespace Bookshop_Management_System.Bookshop
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = false;
             this.btnLogin.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.label3.Location = new System.Drawing.Point(463, 461);
+            this.label3.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(312, 22);
+            this.label3.TabIndex = 14;
+            this.label3.Text = "------------------OR---------------------";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+            this.label3.Click += new System.EventHandler(this.label3_Click_1);
             // 
             // Login
             // 
@@ -286,8 +282,8 @@ namespace Bookshop_Management_System.Bookshop
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnLogin;
+        private System.Windows.Forms.Label label3;
     }
 }
