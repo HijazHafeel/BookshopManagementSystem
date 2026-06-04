@@ -245,6 +245,7 @@
             this.llblLogin.TabIndex = 31;
             this.llblLogin.TabStop = true;
             this.llblLogin.Text = "Login here";
+            this.llblLogin.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llblLogin_LinkClicked);
             // 
             // btnSignUp
             // 

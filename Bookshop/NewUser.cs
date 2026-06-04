@@ -126,5 +126,12 @@ namespace Bookshop_Management_System.Bookshop
         {
 
         }
+
+        private void llblLogin_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Login frm = new Login();
+            frm.Show();
+            this.Hide();
+        }
     }
 }

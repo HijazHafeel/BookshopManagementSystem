@@ -133,6 +133,7 @@
             this.btnReturnLogin.TabIndex = 15;
             this.btnReturnLogin.Text = "BACK TO LOGIN";
             this.btnReturnLogin.UseVisualStyleBackColor = true;
+            this.btnReturnLogin.Click += new System.EventHandler(this.btnReturnLogin_Click);
             // 
             // lblUname
             // 
@@ -171,6 +172,7 @@
             this.btnReset.TabIndex = 23;
             this.btnReset.Text = "SEND RESET LINK";
             this.btnReset.UseVisualStyleBackColor = false;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // txtContact
             // 
