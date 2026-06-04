@@ -35,11 +35,11 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnLogin = new System.Windows.Forms.Button();
+            this.btnReturnLogin = new System.Windows.Forms.Button();
             this.lblUname = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.txtUname = new System.Windows.Forms.TextBox();
+            this.btnReset = new System.Windows.Forms.Button();
+            this.txtContact = new System.Windows.Forms.TextBox();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
@@ -123,16 +123,16 @@
             this.label1.TabIndex = 12;
             this.label1.Text = "Reset Your Password";
             // 
-            // btnLogin
+            // btnReturnLogin
             // 
-            this.btnLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLogin.ForeColor = System.Drawing.Color.Navy;
-            this.btnLogin.Location = new System.Drawing.Point(423, 487);
-            this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(413, 44);
-            this.btnLogin.TabIndex = 15;
-            this.btnLogin.Text = "BACK TO LOGIN";
-            this.btnLogin.UseVisualStyleBackColor = true;
+            this.btnReturnLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReturnLogin.ForeColor = System.Drawing.Color.Navy;
+            this.btnReturnLogin.Location = new System.Drawing.Point(423, 487);
+            this.btnReturnLogin.Name = "btnReturnLogin";
+            this.btnReturnLogin.Size = new System.Drawing.Size(413, 44);
+            this.btnReturnLogin.TabIndex = 15;
+            this.btnReturnLogin.Text = "BACK TO LOGIN";
+            this.btnReturnLogin.UseVisualStyleBackColor = true;
             // 
             // lblUname
             // 
@@ -142,9 +142,9 @@
             this.lblUname.Location = new System.Drawing.Point(443, 246);
             this.lblUname.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.lblUname.Name = "lblUname";
-            this.lblUname.Size = new System.Drawing.Size(182, 29);
+            this.lblUname.Size = new System.Drawing.Size(101, 29);
             this.lblUname.TabIndex = 13;
-            this.lblUname.Text = "Email Address";
+            this.lblUname.Text = "Contact";
             // 
             // label4
             // 
@@ -159,25 +159,25 @@
             this.label4.Text = "------------------OR---------------------";
             this.label4.TextAlign = System.Drawing.ContentAlignment.BottomRight;
             // 
-            // button1
+            // btnReset
             // 
-            this.button1.BackColor = System.Drawing.Color.Navy;
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.button1.Location = new System.Drawing.Point(422, 372);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(413, 44);
-            this.button1.TabIndex = 23;
-            this.button1.Text = "SEND RESET LINK";
-            this.button1.UseVisualStyleBackColor = false;
+            this.btnReset.BackColor = System.Drawing.Color.Navy;
+            this.btnReset.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnReset.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReset.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.btnReset.Location = new System.Drawing.Point(422, 372);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(413, 44);
+            this.btnReset.TabIndex = 23;
+            this.btnReset.Text = "SEND RESET LINK";
+            this.btnReset.UseVisualStyleBackColor = false;
             // 
-            // txtUname
+            // txtContact
             // 
-            this.txtUname.Location = new System.Drawing.Point(437, 290);
-            this.txtUname.Name = "txtUname";
-            this.txtUname.Size = new System.Drawing.Size(380, 22);
-            this.txtUname.TabIndex = 26;
+            this.txtContact.Location = new System.Drawing.Point(437, 290);
+            this.txtContact.Name = "txtContact";
+            this.txtContact.Size = new System.Drawing.Size(380, 22);
+            this.txtContact.TabIndex = 26;
             // 
             // FogetPassword
             // 
@@ -185,12 +185,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1030, 570);
-            this.Controls.Add(this.txtUname);
+            this.Controls.Add(this.txtContact);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnReset);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.btnLogin);
+            this.Controls.Add(this.btnReturnLogin);
             this.Controls.Add(this.lblUname);
             this.Name = "FogetPassword";
             this.Text = "FogetPassword";
@@ -210,11 +210,11 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnLogin;
+        private System.Windows.Forms.Button btnReturnLogin;
         private System.Windows.Forms.Label lblUname;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox txtUname;
+        private System.Windows.Forms.Button btnReset;
+        private System.Windows.Forms.TextBox txtContact;
     }
 }
