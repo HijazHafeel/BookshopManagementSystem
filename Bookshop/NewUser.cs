@@ -24,10 +24,10 @@ namespace Bookshop_Management_System.Bookshop
 
         private void NewUser_Load(object sender, EventArgs e)
         {
-            cmbRole.Items.Add("Admin");
-            cmbRole.Items.Add("Staff");
+            cmbGender.Items.Add("Male");
+            cmbGender.Items.Add("Female");
 
-            cmbRole.SelectedIndex = 0;
+            cmbGender.SelectedIndex = 0;
         }
 
         private void panel3_Paint(object sender, PaintEventArgs e)
@@ -35,10 +35,7 @@ namespace Bookshop_Management_System.Bookshop
 
         }
 
-        private void txtUname_TextChanged(object sender, EventArgs e)
-        {
-
-        }
+        
 
         private void lblPass_Click(object sender, EventArgs e)
         {
@@ -58,35 +55,76 @@ namespace Bookshop_Management_System.Bookshop
         private void btnSignUp_Click(object sender, EventArgs e)
         {
             if (txtFName.Text == "" ||
-               txtUname.Text == "" ||
-               txtPass.Text == "" ||
-               txtConPass.Text == "")
+                txtUName.Text == "" ||
+                txtPass.Text == "" ||
+                txtConPass.Text == "" ||
+                txtContact.Text == "")
             {
-                MessageBox.Show("Please fill all required fields");
+                MessageBox.Show("Please fill all required fields.");
                 return;
             }
 
             if (txtPass.Text != txtConPass.Text)
             {
-                MessageBox.Show("Passwords do not match");
+                MessageBox.Show("Passwords do not match.");
                 return;
             }
 
+            // Generate next User ID
+            string uid = "U001";
+
+            DataTable dt = model.myconn.Search(
+                "SELECT TOP 1 U_ID FROM Staff ORDER BY U_ID DESC");
+
+            if (dt.Rows.Count > 0)
+            {
+                string lastID = dt.Rows[0]["U_ID"].ToString().Trim();
+
+                int number = Convert.ToInt32(lastID.Substring(1));
+                number++;
+
+                uid = "U" + number.ToString("000");
+            }
+
             string sql =
-                "INSERT INTO Users " +
-                "(Username, Password, FullName, Email, Role) " +
+                "INSERT INTO Staff " +
+                "(U_ID, U_Name, F_Name, L_Name, Address, Contact, Gender, Password) " +
                 "VALUES ('" +
-                txtUname.Text + "','" +
-                txtPass.Text + "','" +
+                uid + "','" +
+                txtUName.Text + "','" +
                 txtFName.Text + "','" +
-                txtEmail.Text + "','" +
-                cmbRole.Text + "')";
+                txtLName.Text + "','" +
+                txtAddress.Text + "','" +
+                txtContact.Text + "','" +
+                cmbGender.Text + "','" +
+                txtPass.Text + "')";
 
             model.myconn.Save(sql);
 
-            MessageBox.Show("User Registered Successfully");
+            MessageBox.Show(
+                "Registration Successful!\nYour User ID is: " + uid);
+
+            txtUName.Clear();
+            txtFName.Clear();
+            txtLName.Clear();
+            txtAddress.Clear();
+            txtContact.Clear();
+            txtPass.Clear();
+            txtConPass.Clear();
+
+            cmbGender.SelectedIndex = 0;
+
+            txtFName.Focus();
         }
 
+        private void cmbGender_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
+        }
+
+        private void txtUName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

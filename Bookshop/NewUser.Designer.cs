@@ -39,18 +39,20 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.txtEmail = new System.Windows.Forms.TextBox();
+            this.txtAddress = new System.Windows.Forms.TextBox();
             this.txtConPass = new System.Windows.Forms.TextBox();
             this.txtPass = new System.Windows.Forms.TextBox();
-            this.txtUname = new System.Windows.Forms.TextBox();
+            this.txtUName = new System.Windows.Forms.TextBox();
             this.txtFName = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.llblLogin = new System.Windows.Forms.LinkLabel();
             this.btnSignUp = new System.Windows.Forms.Button();
             this.btnClr = new System.Windows.Forms.Button();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.cmbRole = new System.Windows.Forms.ComboBox();
+            this.cmbGender = new System.Windows.Forms.ComboBox();
+            this.txtContact = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtLName = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -90,12 +92,12 @@
             this.lblPass.AutoSize = true;
             this.lblPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPass.ForeColor = System.Drawing.Color.Navy;
-            this.lblPass.Location = new System.Drawing.Point(370, 227);
+            this.lblPass.Location = new System.Drawing.Point(683, 193);
             this.lblPass.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.lblPass.Name = "lblPass";
-            this.lblPass.Size = new System.Drawing.Size(79, 29);
+            this.lblPass.Size = new System.Drawing.Size(109, 29);
             this.lblPass.TabIndex = 13;
-            this.lblPass.Text = "Email";
+            this.lblPass.Text = "Address";
             this.lblPass.Click += new System.EventHandler(this.lblPass_Click);
             // 
             // lblUname
@@ -103,31 +105,31 @@
             this.lblUname.AutoSize = true;
             this.lblUname.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUname.ForeColor = System.Drawing.Color.Navy;
-            this.lblUname.Location = new System.Drawing.Point(370, 139);
+            this.lblUname.Location = new System.Drawing.Point(370, 105);
             this.lblUname.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.lblUname.Name = "lblUname";
-            this.lblUname.Size = new System.Drawing.Size(133, 29);
+            this.lblUname.Size = new System.Drawing.Size(141, 29);
             this.lblUname.TabIndex = 12;
-            this.lblUname.Text = "Full Name";
+            this.lblUname.Text = "First Name";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Navy;
-            this.label1.Location = new System.Drawing.Point(687, 318);
+            this.label1.Location = new System.Drawing.Point(687, 349);
             this.label1.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(68, 29);
+            this.label1.Size = new System.Drawing.Size(100, 29);
             this.label1.TabIndex = 17;
-            this.label1.Text = "Role";
+            this.label1.Text = "Gender";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Navy;
-            this.label3.Location = new System.Drawing.Point(683, 139);
+            this.label3.Location = new System.Drawing.Point(683, 105);
             this.label3.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(132, 29);
@@ -163,7 +165,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.Navy;
-            this.label6.Location = new System.Drawing.Point(687, 227);
+            this.label6.Location = new System.Drawing.Point(687, 276);
             this.label6.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(128, 29);
@@ -175,7 +177,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.Navy;
-            this.label7.Location = new System.Drawing.Point(370, 318);
+            this.label7.Location = new System.Drawing.Point(370, 349);
             this.label7.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(226, 29);
@@ -183,37 +185,38 @@
             this.label7.Text = "Confirm Password";
             this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
-            // txtEmail
+            // txtAddress
             // 
-            this.txtEmail.Location = new System.Drawing.Point(375, 259);
-            this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(172, 22);
-            this.txtEmail.TabIndex = 24;
+            this.txtAddress.Location = new System.Drawing.Point(688, 225);
+            this.txtAddress.Name = "txtAddress";
+            this.txtAddress.Size = new System.Drawing.Size(172, 22);
+            this.txtAddress.TabIndex = 24;
             // 
             // txtConPass
             // 
-            this.txtConPass.Location = new System.Drawing.Point(376, 350);
+            this.txtConPass.Location = new System.Drawing.Point(376, 381);
             this.txtConPass.Name = "txtConPass";
             this.txtConPass.Size = new System.Drawing.Size(172, 22);
             this.txtConPass.TabIndex = 25;
             // 
             // txtPass
             // 
-            this.txtPass.Location = new System.Drawing.Point(692, 259);
+            this.txtPass.Location = new System.Drawing.Point(692, 308);
             this.txtPass.Name = "txtPass";
             this.txtPass.Size = new System.Drawing.Size(172, 22);
             this.txtPass.TabIndex = 27;
             // 
-            // txtUname
+            // txtUName
             // 
-            this.txtUname.Location = new System.Drawing.Point(688, 171);
-            this.txtUname.Name = "txtUname";
-            this.txtUname.Size = new System.Drawing.Size(172, 22);
-            this.txtUname.TabIndex = 28;
+            this.txtUName.Location = new System.Drawing.Point(688, 137);
+            this.txtUName.Name = "txtUName";
+            this.txtUName.Size = new System.Drawing.Size(172, 22);
+            this.txtUName.TabIndex = 28;
+            this.txtUName.TextChanged += new System.EventHandler(this.txtUName_TextChanged);
             // 
             // txtFName
             // 
-            this.txtFName.Location = new System.Drawing.Point(375, 171);
+            this.txtFName.Location = new System.Drawing.Point(375, 137);
             this.txtFName.Name = "txtFName";
             this.txtFName.Size = new System.Drawing.Size(172, 22);
             this.txtFName.TabIndex = 29;
@@ -270,36 +273,52 @@
             this.btnClr.Text = "Clear";
             this.btnClr.UseVisualStyleBackColor = false;
             // 
-            // checkBox1
+            // cmbGender
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox1.ForeColor = System.Drawing.Color.Navy;
-            this.checkBox1.Location = new System.Drawing.Point(399, 396);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(137, 26);
-            this.checkBox1.TabIndex = 35;
-            this.checkBox1.Text = "I agree to the";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.cmbGender.FormattingEnabled = true;
+            this.cmbGender.Location = new System.Drawing.Point(692, 379);
+            this.cmbGender.Name = "cmbGender";
+            this.cmbGender.Size = new System.Drawing.Size(172, 24);
+            this.cmbGender.TabIndex = 37;
+            this.cmbGender.SelectedIndexChanged += new System.EventHandler(this.cmbGender_SelectedIndexChanged);
             // 
-            // linkLabel1
+            // txtContact
             // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLabel1.Location = new System.Drawing.Point(531, 397);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(224, 25);
-            this.linkLabel1.TabIndex = 36;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "Terms and Conditions";
+            this.txtContact.Location = new System.Drawing.Point(376, 308);
+            this.txtContact.Name = "txtContact";
+            this.txtContact.Size = new System.Drawing.Size(172, 22);
+            this.txtContact.TabIndex = 39;
             // 
-            // cmbRole
+            // label2
             // 
-            this.cmbRole.FormattingEnabled = true;
-            this.cmbRole.Location = new System.Drawing.Point(692, 348);
-            this.cmbRole.Name = "cmbRole";
-            this.cmbRole.Size = new System.Drawing.Size(172, 24);
-            this.cmbRole.TabIndex = 37;
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.Navy;
+            this.label2.Location = new System.Drawing.Point(371, 276);
+            this.label2.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(101, 29);
+            this.label2.TabIndex = 38;
+            this.label2.Text = "Contact";
+            // 
+            // txtLName
+            // 
+            this.txtLName.Location = new System.Drawing.Point(375, 225);
+            this.txtLName.Name = "txtLName";
+            this.txtLName.Size = new System.Drawing.Size(172, 22);
+            this.txtLName.TabIndex = 41;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.Navy;
+            this.label9.Location = new System.Drawing.Point(370, 193);
+            this.label9.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(137, 29);
+            this.label9.TabIndex = 40;
+            this.label9.Text = "Last Name";
             // 
             // NewUser
             // 
@@ -307,18 +326,20 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(960, 578);
-            this.Controls.Add(this.cmbRole);
-            this.Controls.Add(this.linkLabel1);
-            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.txtLName);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.txtContact);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.cmbGender);
             this.Controls.Add(this.btnClr);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.llblLogin);
             this.Controls.Add(this.btnSignUp);
             this.Controls.Add(this.txtFName);
-            this.Controls.Add(this.txtUname);
+            this.Controls.Add(this.txtUName);
             this.Controls.Add(this.txtPass);
             this.Controls.Add(this.txtConPass);
-            this.Controls.Add(this.txtEmail);
+            this.Controls.Add(this.txtAddress);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -350,17 +371,19 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox txtEmail;
+        private System.Windows.Forms.TextBox txtAddress;
         private System.Windows.Forms.TextBox txtConPass;
         private System.Windows.Forms.TextBox txtPass;
-        private System.Windows.Forms.TextBox txtUname;
+        private System.Windows.Forms.TextBox txtUName;
         private System.Windows.Forms.TextBox txtFName;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.LinkLabel llblLogin;
         private System.Windows.Forms.Button btnSignUp;
         private System.Windows.Forms.Button btnClr;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.LinkLabel linkLabel1;
-        private System.Windows.Forms.ComboBox cmbRole;
+        private System.Windows.Forms.ComboBox cmbGender;
+        private System.Windows.Forms.TextBox txtContact;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtLName;
+        private System.Windows.Forms.Label label9;
     }
 }

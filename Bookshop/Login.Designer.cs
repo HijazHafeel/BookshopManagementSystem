@@ -108,6 +108,7 @@ namespace Bookshop_Management_System.Bookshop
             this.llblReg.TabIndex = 8;
             this.llblReg.TabStop = true;
             this.llblReg.Text = "Register";
+            this.llblReg.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llblReg_LinkClicked);
             // 
             // panel1
             // 
@@ -190,7 +191,7 @@ namespace Bookshop_Management_System.Bookshop
             this.btnLogin.TabIndex = 3;
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = false;
-            this.btnLogin.Click += new System.EventHandler(this.button1_Click);
+            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
             // label3
             // 
