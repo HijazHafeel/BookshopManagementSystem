@@ -42,7 +42,7 @@ namespace Bookshop_Management_System.Bookshop
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnLogic_Click(object sender, EventArgs e)
         {
 
         }
@@ -54,7 +54,9 @@ namespace Bookshop_Management_System.Bookshop
 
         private void llblFPd_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-
+            FogetPassword frm = new FogetPassword();
+            frm.Show();
+            this.Hide();
         }
 
         private void label3_Click_1(object sender, EventArgs e)
@@ -70,6 +72,46 @@ namespace Bookshop_Management_System.Bookshop
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            if (txtUname.Text == "" || txtPass.Text == "")
+            {
+                MessageBox.Show("Please enter Username and Password.");
+                return;
+            }
+
+            string sql =
+                "SELECT * FROM Staff WHERE " +
+                "U_Name = '" + txtUname.Text + "' " +
+                "AND Password = '" + txtPass.Text + "'";
+
+            DataTable dt = model.myconn.Search(sql);
+
+            if (dt.Rows.Count > 0)
+            {
+                MessageBox.Show("Login Successful!");
+
+                // TODO:
+                // Open Welcome Form
+                // Example:
+                //
+                // Welcome frm = new Welcome();
+                // frm.Show();
+                // this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Invalid Username or Password.");
+            }
+        }
+
+        private void llblReg_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            NewUser frm = new NewUser();
+            frm.Show();
+            this.Hide();
         }
     }
 }
