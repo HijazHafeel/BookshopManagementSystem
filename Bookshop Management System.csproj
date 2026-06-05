@@ -133,6 +133,9 @@
     <EmbeddedResource Include="Bookshop\NewUser.resx">
       <DependentUpon>NewUser.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Bookshop\Publisher.resx">
+      <DependentUpon>Publisher.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Bookshop\Staff.resx">
       <DependentUpon>Staff.cs</DependentUpon>
     </EmbeddedResource>
