@@ -16,6 +16,16 @@ namespace Bookshop_Management_System
         {
             InitializeComponent();
         }
-       
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Bookshop.WelcomeFrame wf = new Bookshop.WelcomeFrame(textBox1.Text);
+            wf.Show();
+        }
     }
 }

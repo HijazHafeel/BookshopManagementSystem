@@ -76,35 +76,40 @@ namespace Bookshop_Management_System.Bookshop
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            if (txtUname.Text == "" || txtPass.Text == "")
+            try
             {
-                MessageBox.Show("Please enter Username and Password.");
-                return;
+                if (txtUname.Text == "" || txtPass.Text == "")
+                {
+                    MessageBox.Show("Please enter Username and Password.");
+                    return;
+                }
+
+                string sql =
+                    "SELECT * FROM Staff WHERE " +
+                    "U_Name = '" + txtUname.Text + "' " +
+                    "AND Password = '" + txtPass.Text + "'";
+
+                DataTable dt = model.myconn.Search(sql);
+
+                if (dt.Rows.Count > 0)
+                {
+                    MessageBox.Show("Login Successful!");
+                    WelcomeFrame wf = new WelcomeFrame(txtUname.Text);
+                    wf.Show();
+                    this.Close();
+
+
+                }
+                else
+                {
+                    MessageBox.Show("Invalid Username or Password.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred during login: " + ex.Message);
             }
 
-            string sql =
-                "SELECT * FROM Staff WHERE " +
-                "U_Name = '" + txtUname.Text + "' " +
-                "AND Password = '" + txtPass.Text + "'";
-
-            DataTable dt = model.myconn.Search(sql);
-
-            if (dt.Rows.Count > 0)
-            {
-                MessageBox.Show("Login Successful!");
-
-                // TODO:
-                // Open Welcome Form
-                // Example:
-                //
-                // Welcome frm = new Welcome();
-                // frm.Show();
-                // this.Hide();
-            }
-            else
-            {
-                MessageBox.Show("Invalid Username or Password.");
-            }
         }
 
         private void llblReg_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
