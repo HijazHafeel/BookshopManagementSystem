@@ -4,9 +4,13 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static Bookshop_Management_System.Controler.LogIn;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Bookshop_Management_System.Bookshop
 {
@@ -48,6 +52,167 @@ namespace Bookshop_Management_System.Bookshop
         }
 
         private void btnSave_Click(object sender, EventArgs e)
+        {
+
+            if (IsValidInput())
+            {
+
+                Controler.AuthorDetails.Insert(txtAuthId, txtAuthName, txtAuthContact, txtAuthEmail, txtAuthAdd, cmbGender);
+
+            }
+        }
+
+        private Boolean IsValidInput()
+        {
+            if (string.IsNullOrWhiteSpace(txtAuthId.Text) ||
+                string.IsNullOrWhiteSpace(txtAuthName.Text) ||
+                string.IsNullOrWhiteSpace(txtAuthContact.Text) ||
+                string.IsNullOrWhiteSpace(txtAuthEmail.Text) ||
+                string.IsNullOrWhiteSpace(txtAuthAdd.Text) ||
+                cmbGender.SelectedItem == null)
+            {
+                MessageBox.Show("Please fill in all fields.");
+                return false;
+            }
+
+            // Contact: must start with '07' and be exactly 10 digits
+            string contact = txtAuthContact.Text.Trim();
+            if (!Regex.IsMatch(contact, @"^07\d{8}$"))
+            {
+                MessageBox.Show("Please enter a valid contact number starting with '07' and 10 digits long.");
+                return false;
+            }
+
+            // Email: validate format using MailAddress
+            string email = txtAuthEmail.Text.Trim();
+            try
+            {
+                var addr = new MailAddress(email);
+                if (addr.Address != email)
+                {
+                    MessageBox.Show("Please enter a valid email address.");
+                    return false;
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Please enter a valid email address.");
+                return false;
+            }
+
+            return true;
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            if (IsValidInput()) {
+
+                DialogResult result = MessageBox.Show("Are you sure you want to update this record?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    Controler.AuthorDetails.Update(txtAuthId, txtAuthName, txtAuthContact, txtAuthEmail, txtAuthAdd, cmbGender);
+                }
+                
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtAuthId.Text)) { 
+                MessageBox.Show("Please enter the Author ID to delete.");
+            }
+            else
+            {
+                DialogResult result = MessageBox.Show("Are you sure you want to delete this record?","Confirmation",MessageBoxButtons.YesNo,MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    Controler.AuthorDetails.Delete(txtAuthId);
+                }
+                
+            }
+        }
+
+        private void Author_Load(object sender, EventArgs e)
+        {
+            Controler.AuthorDetails.getAll(AuthorTable);
+            // Wire up cell click handler to populate fields when a row is clicked
+            this.AuthorTable.CellClick += new DataGridViewCellEventHandler(this.AuthorTable_CellClick);
+        }
+
+        private void AuthorTable_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+            var row = this.AuthorTable.Rows[e.RowIndex];
+            // Use column names to get values safely
+            this.txtAuthId.Text = row.Cells["Author_ID"].Value?.ToString() ?? string.Empty;
+            this.txtAuthName.Text = row.Cells["Name"].Value?.ToString() ?? string.Empty;
+            this.txtAuthContact.Text = row.Cells["Contact"].Value?.ToString() ?? string.Empty;
+            this.txtAuthEmail.Text = row.Cells["Email"].Value?.ToString() ?? string.Empty;
+            this.txtAuthAdd.Text = row.Cells["Address"].Value?.ToString() ?? string.Empty;
+            var genderVal = row.Cells["Gender"].Value?.ToString() ?? string.Empty;
+            // try select item in combo box matching the gender value
+            if (!string.IsNullOrEmpty(genderVal))
+            {
+                int index = cmbGender.FindStringExact(genderVal.Trim());
+
+                if (index >= 0)
+                {
+                    cmbGender.SelectedIndex = index;
+                }
+            }
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnBooks_Click(object sender, EventArgs e)
+        {
+            Book book = new Book();
+            book.Show();
+            this.Close();
+        }
+
+        private void btnAuthor_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void btnPublisher_Click(object sender, EventArgs e)
+        {
+            Publisher publisher = new Publisher();
+            publisher.Show();
+            this.Close();
+        }
+
+        private void btnStaff_Click(object sender, EventArgs e)
+        {
+            Staff staff = new Staff();
+            staff.Show();
+            this.Close();
+        }
+
+        private void btnBilling_Click(object sender, EventArgs e)
+        {
+            Billing billing = new Billing();
+            billing.Show();
+            this.Close();
+        }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            Login login = new Login();
+            login.Show();
+            GlobalData.LoggedInUser = "";
+            GlobalData.UserRole = "";
+            this.Close();
+
+        }
+
+        private void AuthorTable_CellClick_1(object sender, DataGridViewCellEventArgs e)
         {
 
         }

@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -57,6 +58,7 @@ namespace Bookshop_Management_System.Bookshop
             FogetPassword frm = new FogetPassword();
             frm.Show();
             this.Hide();
+           // Application.Exit();
         }
 
         private void label3_Click_1(object sender, EventArgs e)
@@ -76,40 +78,12 @@ namespace Bookshop_Management_System.Bookshop
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            try
-            {
-                if (txtUname.Text == "" || txtPass.Text == "")
-                {
-                    MessageBox.Show("Please enter Username and Password.");
-                    return;
-                }
-
-                string sql =
-                    "SELECT * FROM Staff WHERE " +
-                    "U_Name = '" + txtUname.Text + "' " +
-                    "AND Password = '" + txtPass.Text + "'";
-
-                DataTable dt = model.myconn.Search(sql);
-
-                if (dt.Rows.Count > 0)
-                {
-                    MessageBox.Show("Login Successful!");
-                    WelcomeFrame wf = new WelcomeFrame(txtUname.Text);
-                    wf.Show();
-                    this.Close();
-
-
-                }
-                else
-                {
-                    MessageBox.Show("Invalid Username or Password.");
-                }
+           if(Controler.LogIn.LogInbtn(txtUname, txtPass)) {
+                WelcomeFrame frm = new WelcomeFrame();
+                frm.Show();
+                this.Hide();
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("An error occurred during login: " + ex.Message);
-            }
-
+            
         }
 
         private void llblReg_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

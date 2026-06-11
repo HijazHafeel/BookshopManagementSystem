@@ -29,12 +29,13 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnBook = new System.Windows.Forms.Button();
             this.btnstaff = new System.Windows.Forms.Button();
             this.btnpub = new System.Windows.Forms.Button();
             this.btnAuthor = new System.Windows.Forms.Button();
             this.btnBilling = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -47,6 +48,16 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(339, 446);
             this.panel1.TabIndex = 0;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Bookshop_Management_System.Properties.Resources.WhatsApp_Image_2026_05_08_at_8_56_47_PM;
+            this.pictureBox1.Location = new System.Drawing.Point(75, 142);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(188, 147);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
             // 
             // btnBook
             // 
@@ -103,21 +114,22 @@
             this.btnBilling.UseVisualStyleBackColor = true;
             this.btnBilling.Click += new System.EventHandler(this.button5_Click);
             // 
-            // pictureBox1
+            // label1
             // 
-            this.pictureBox1.Image = global::Bookshop_Management_System.Properties.Resources.WhatsApp_Image_2026_05_08_at_8_56_47_PM;
-            this.pictureBox1.Location = new System.Drawing.Point(64, 58);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(188, 147);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(767, 24);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(64, 22);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "label1";
             // 
             // WelcomeFrame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1102, 450);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnBilling);
             this.Controls.Add(this.btnAuthor);
             this.Controls.Add(this.btnpub);
@@ -126,9 +138,11 @@
             this.Controls.Add(this.panel1);
             this.Name = "WelcomeFrame";
             this.Text = "WelcomeFrame";
+            this.Load += new System.EventHandler(this.WelcomeFrame_Load);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -141,5 +155,6 @@
         private System.Windows.Forms.Button btnpub;
         private System.Windows.Forms.Button btnAuthor;
         private System.Windows.Forms.Button btnBilling;
+        private System.Windows.Forms.Label label1;
     }
 }

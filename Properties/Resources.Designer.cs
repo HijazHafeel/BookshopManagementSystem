@@ -63,6 +63,16 @@ namespace Bookshop_Management_System.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_arrowleft_24 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-arrowleft-24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap WhatsApp_Image_2026_05_08_at_8_56_47_PM {
             get {
                 object obj = ResourceManager.GetObject("WhatsApp Image 2026-05-08 at 8.56.47 PM", resourceCulture);
