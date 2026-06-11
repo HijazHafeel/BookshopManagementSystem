@@ -18,7 +18,7 @@ namespace Bookshop_Management_System
         {
             Application.SetCompatibleTextRenderingDefault(false);
             Application.EnableVisualStyles();
-            Application.Run(new Bookshop.Login());
+            Application.Run(new Bookshop.WelcomeFrame());
         }
     }
     }

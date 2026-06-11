@@ -12,28 +12,14 @@ namespace Bookshop_Management_System.Bookshop
 {
     public partial class WelcomeFrame : Form
     {
+
+        String username = Controler.LogIn.GlobalData.LoggedInUser;
+        string role = Controler.LogIn.GlobalData.UserRole;
         
 
-        public WelcomeFrame(string role)
+        public WelcomeFrame()
         {
             InitializeComponent();
-
-            if (role == "admin")
-            {
-                btnBook.Enabled = true;
-                btnstaff.Enabled = true;
-                btnpub.Enabled = true;
-                btnAuthor.Enabled = true;
-                btnBilling.Enabled = true;
-            }
-            else if (role == "staff")
-            {
-                btnBook.Enabled = true;
-                btnstaff.Enabled = false;
-                btnpub.Enabled = false;
-                btnAuthor.Enabled = false;
-                btnBilling.Enabled = true;
-            }
         }
         
         private void button2_Click(object sender, EventArgs e)
@@ -52,9 +38,9 @@ namespace Bookshop_Management_System.Bookshop
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Form2 book = new Form2();
+            Book book = new Book();
             book.Show();
-            this.Close();
+            this.Hide();
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -69,6 +55,37 @@ namespace Bookshop_Management_System.Bookshop
             Billing billing = new Billing();
             billing.Show();
             this.Close();
+        }
+
+        private void WelcomeFrame_Load(object sender, EventArgs e)
+        {
+            label1.Text = "HI! Welcome, " + username;
+
+            if (role == "ADMIN")
+            {
+                btnBook.Enabled = true;
+                btnstaff.Enabled = true;
+                btnpub.Enabled = true;
+                btnAuthor.Enabled = true;
+                btnBilling.Enabled = true;
+            }
+            else if (role == "STAFF")
+            {
+                btnBook.Enabled = true;
+                btnstaff.Enabled = false;
+                btnpub.Enabled = false;
+                btnAuthor.Enabled = false;
+                btnBilling.Enabled = true;
+            }
+            else
+            {
+                btnBook.Enabled = true;
+                btnstaff.Enabled = true;
+                btnpub.Enabled = true;
+                btnAuthor.Enabled = true;
+                btnBilling.Enabled = true;
+
+            }
         }
     }
 }

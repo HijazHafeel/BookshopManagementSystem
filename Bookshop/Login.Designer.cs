@@ -82,6 +82,7 @@ namespace Bookshop_Management_System.Bookshop
             // 
             this.txtPass.Location = new System.Drawing.Point(525, 288);
             this.txtPass.Name = "txtPass";
+            this.txtPass.PasswordChar = '*';
             this.txtPass.Size = new System.Drawing.Size(380, 34);
             this.txtPass.TabIndex = 6;
             this.txtPass.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
@@ -114,7 +115,7 @@ namespace Bookshop_Management_System.Bookshop
             // 
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(324, 47);
+            this.panel1.Location = new System.Drawing.Point(354, 28);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(432, 100);
             this.panel1.TabIndex = 10;
@@ -228,8 +229,11 @@ namespace Bookshop_Management_System.Bookshop
             this.Controls.Add(this.lblUname);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.Navy;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(7, 5, 7, 5);
+            this.MaximizeBox = false;
             this.Name = "Login";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
             this.Load += new System.EventHandler(this.Login_Load);
             this.panel1.ResumeLayout(false);

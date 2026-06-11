@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace Bookshop_Management_System.Bookshop
 {
@@ -24,10 +25,8 @@ namespace Bookshop_Management_System.Bookshop
 
         private void NewUser_Load(object sender, EventArgs e)
         {
-            cmbGender.Items.Add("Male");
-            cmbGender.Items.Add("Female");
-
-            cmbGender.SelectedIndex = 0;
+            panel3.Visible = false;
+            panel4.Visible = true;
         }
 
         private void panel3_Paint(object sender, PaintEventArgs e)
@@ -54,68 +53,55 @@ namespace Bookshop_Management_System.Bookshop
 
         private void btnSignUp_Click(object sender, EventArgs e)
         {
-            if (txtFName.Text == "" ||
-                txtUName.Text == "" ||
-                txtPass.Text == "" ||
-                txtConPass.Text == "" ||
-                txtContact.Text == "")
+            // Basic validation
+
+
+            string userId = txtUId.Text?.Trim();
+            string userName = txtUserName.Text?.Trim();
+            string newPass = txtPass.Text ?? string.Empty;
+            string confPass = txtConPass.Text ?? string.Empty;
+            if (string.IsNullOrWhiteSpace(userId))
             {
-                MessageBox.Show("Please fill all required fields.");
+                MessageBox.Show("Please enter the User ID (go to Next and verify staff details first).");
                 return;
             }
 
-            if (txtPass.Text != txtConPass.Text)
+            if (string.IsNullOrEmpty(userName))
             {
-                MessageBox.Show("Passwords do not match.");
+                MessageBox.Show("Please enter User Name.");
                 return;
             }
 
-            // Generate next User ID
-            string uid = "U001";
-
-            DataTable dt = model.myconn.Search(
-                "SELECT TOP 1 U_ID FROM Staff ORDER BY U_ID DESC");
-
-            if (dt.Rows.Count > 0)
+            if (newPass != confPass)
             {
-                string lastID = dt.Rows[0]["U_ID"].ToString().Trim();
-
-                int number = Convert.ToInt32(lastID.Substring(1));
-                number++;
-
-                uid = "U" + number.ToString("000");
+                MessageBox.Show("New password and confirm password do not match.");
+                return;
             }
 
-            string sql =
-                "INSERT INTO Staff " +
-                "(U_ID, U_Name, F_Name, L_Name, Address, Contact, Gender, Password) " +
-                "VALUES ('" +
-                uid + "','" +
-                txtUName.Text + "','" +
-                txtFName.Text + "','" +
-                txtLName.Text + "','" +
-                txtAddress.Text + "','" +
-                txtContact.Text + "','" +
-                cmbGender.Text + "','" +
-                txtPass.Text + "')";
+            if (!Controler.LogIn.IsValidPassword(newPass))
+            {
+                MessageBox.Show("Password must be at least 8 characters and include an uppercase letter, a lowercase letter, a digit and a symbol.");
+                return;
+            }
 
-            model.myconn.Save(sql);
-
-            MessageBox.Show(
-                "Registration Successful!\nYour User ID is: " + uid);
-
-            txtUName.Clear();
-            txtFName.Clear();
-            txtLName.Clear();
-            txtAddress.Clear();
-            txtContact.Clear();
+            Controler.LogIn.singup(txtUId, txtUserName, txtPass);
+            // Clear fields
+            txtUserName.Clear();
             txtPass.Clear();
             txtConPass.Clear();
+            txtUId.Clear();
+            txtFName.Clear();
+            txtLName.Clear();
+            txtContact.Clear();
+            comboBox1.SelectedIndex = -1;
 
-            cmbGender.SelectedIndex = 0;
+            panel3.Visible = false;
+            panel4.Visible = true;
 
-            txtFName.Focus();
+
         }
+        
+         
 
         private void cmbGender_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -132,6 +118,77 @@ namespace Bookshop_Management_System.Bookshop
             Login frm = new Login();
             frm.Show();
             this.Hide();
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtContact_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtAddress_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnNxt_Click(object sender, EventArgs e)
+        {
+           
+            if(txtFName.Text == "" ||
+                txtLName.Text == "" ||
+                txtUId.Text == "" ||
+                txtContact.Text == "")
+            {
+                MessageBox.Show("Please fill all required fields.");
+                return;
+            }else if(Controler.LogIn.isStaff(txtUId,txtFName, txtLName, txtContact, comboBox1))
+            {
+                panel3.Visible = true;
+                panel4.Visible = false;
+
+            }
+            else
+            {
+                MessageBox.Show("No matching staff record found. Please check your details.");
+
+
+            }
+        }
+
+        private void txtLName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel3_Paint_1(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            panel3.Visible = false;
+            panel4.Visible = true;
+        }
+
+        private void btnClr_Click(object sender, EventArgs e)
+        {
+            txtUserName.Clear();
+            txtUId.Clear();
+            txtFName.Clear();
+            txtLName.Clear(); 
+            txtContact.Clear();
+            txtPass.Clear();
+            txtConPass.Clear();
         }
     }
 }

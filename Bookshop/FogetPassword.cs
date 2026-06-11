@@ -5,8 +5,10 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace Bookshop_Management_System.Bookshop
 {
@@ -26,41 +28,38 @@ namespace Bookshop_Management_System.Bookshop
         {
             Login frm = new Login();
             frm.Show();
-            this.Hide();
+            this.Close();
         }
 
         private void btnReset_Click(object sender, EventArgs e)
         {
-            if (txtContact.Text == "")
+            // Validate inputs
+            string userId = txtuserid.Text?.Trim();
+            string userName = txtUserName.Text?.Trim();
+            string newPass = txtNewPass.Text ?? string.Empty;
+            string confPass = txtCnfPass.Text ?? string.Empty;
+
+            if (string.IsNullOrEmpty(userId) || string.IsNullOrEmpty(userName))
             {
-                MessageBox.Show("Please enter your Contact Number.");
+                MessageBox.Show("Please enter both User ID and User Name.");
                 return;
             }
 
-            string searchSql =
-                "SELECT * FROM Staff WHERE Contact = '" +
-                txtContact.Text + "'";
-
-            DataTable dt = model.myconn.Search(searchSql);
-
-            if (dt.Rows.Count > 0)
+            if (newPass != confPass)
             {
-                string updateSql =
-                    "UPDATE Staff SET Password = '12345' " +
-                    "WHERE Contact = '" + txtContact.Text + "'";
-
-                model.myconn.Save(updateSql);
-
-                MessageBox.Show(
-                    "Password has been reset successfully.\n\n" +
-                    "Your temporary password is: 12345");
+                MessageBox.Show("New password and confirm password do not match.");
+                return;
             }
-            else
+
+            if (!Controler.LogIn.IsValidPassword(newPass))
             {
-                MessageBox.Show("No user found with this Contact Number.");
-                txtContact.Clear();
-                txtContact.Focus();
+                MessageBox.Show("Password must be at least 8 characters and include an uppercase letter, a lowercase letter, a digit and a symbol.");
+                return;
             }
+
+           Controler.LogIn.Changeapassword(txtuserid, txtUserName, txtNewPass, txtCnfPass);
         }
+
+       
     }
 }

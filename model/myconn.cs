@@ -49,6 +49,7 @@ namespace Bookshop_Management_System.model
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(dt);
+                CloseConnection();
             }
             catch (Exception ex)
             {
@@ -69,6 +70,9 @@ namespace Bookshop_Management_System.model
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 cmd.ExecuteNonQuery();
                 Console.WriteLine("✅ Query executed successfully.");
+                CloseConnection();
+
+
             }
             catch (SqlException ex)
             {

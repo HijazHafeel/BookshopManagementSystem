@@ -24,8 +24,8 @@ namespace Bookshop_Management_System
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Bookshop.WelcomeFrame wf = new Bookshop.WelcomeFrame(textBox1.Text);
-            wf.Show();
+           // Bookshop.WelcomeFrame wf = new Bookshop.WelcomeFrame(textBox1.Text);
+           // wf.Show();
         }
     }
 }
