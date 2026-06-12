@@ -18,8 +18,26 @@ namespace Bookshop_Management_System.Controler
         {
             try
             {
-               string sql = "INSERT INTO Staff (U_ID, F_name,L_Name,Address,Contact,Gender,Email) VALUES ('"+txtUserID.Text+"', '"+txtFName.Text+"', '"+txtLName.Text+"', '"+txtUserAdd.Text+"', '"+txtUserContact.Text+"', '"+cmbGende.SelectedItem?.ToString() ?? string.Empty+"', '"+txtUserEmail.Text+"')";
-                
+                // Ensure the provided ID follows sequence (e.g., U001, U002...)
+                var provided = txtUserID.Text?.Trim().ToUpper();
+                // get current max numeric part
+                string q = "SELECT MAX(CAST(SUBSTRING(U_ID,2,3) AS INT)) AS MaxNum FROM Staff";
+                var dt = model.myconn.Search(q);
+                int maxNum = 0;
+                if (dt != null && dt.Rows.Count > 0 && dt.Rows[0][0] != DBNull.Value)
+                {
+                    int.TryParse(dt.Rows[0][0].ToString(), out maxNum);
+                }
+                int expected = maxNum + 1;
+                var expectedId = "U" + expected.ToString("D3");
+                if (!string.Equals(provided, expectedId, StringComparison.OrdinalIgnoreCase))
+                {
+                    MessageBox.Show($"Staff ID must be the next in sequence: {expectedId}");
+                    return;
+                }
+
+               string sql = "INSERT INTO Staff (U_ID, F_name,L_Name,Address,Contact,Gender,Email,Role) VALUES ('" + txtUserID.Text+"', '"+txtFName.Text+"', '"+txtLName.Text+"', '"+txtUserAdd.Text+"', '"+txtUserContact.Text+"', '"+ (cmbGende.SelectedItem?.ToString() ?? string.Empty) +"', '"+txtUserEmail.Text+"', 'Staff')";
+
                model.myconn.Save(sql);
                 MessageBox.Show("Data Inserted Successfully");
             }

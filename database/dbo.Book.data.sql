@@ -1,3 +1,0 @@
-﻿INSERT INTO [dbo].[Book] ([B_ISBN], [B_Name], [B_Category], [B_Price], [Stock], [P_ID], [A_ID]) VALUES (N'9780143127741', N'Silent Patient', N'Thriller  ', N'14.99     ', N'25        ', N'p001      ', N'a001      ')
-INSERT INTO [dbo].[Book] ([B_ISBN], [B_Name], [B_Category], [B_Price], [Stock], [P_ID], [A_ID]) VALUES (N'9780261103573', N'Mountain Tales', N'Fantasy   ', N'10.00     ', N'50        ', N'p003      ', N'a003      ')
-INSERT INTO [dbo].[Book] ([B_ISBN], [B_Name], [B_Category], [B_Price], [Stock], [P_ID], [A_ID]) VALUES (N'9780307277671', N'Wandering Road', N'Fiction   ', N'12.50     ', N'10        ', N'p002      ', N'a002      ')

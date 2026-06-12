@@ -106,7 +106,7 @@
     <Compile Include="Controler\LogIn.cs" />
     <Compile Include="Controler\PublisherDetails.cs" />
     <Compile Include="Controler\StaffDetails.cs" />
-    <Compile Include="Controler\validations.cs" />
+    <Compile Include="Controler\Validation.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

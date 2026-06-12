@@ -61,8 +61,31 @@ namespace Bookshop_Management_System.Controler
         {
             try
             {
-                string sql = "INSERT INTO Publisher (P_ID, P_Name, Contact, Email, Address) VALUES ('" + txtid.Text + "','" + txtname.Text + "','" + txtcontact.Text + "','" + txtemail.Text + "','" + txtadd.Text + "')";
-                myconn.Save(sql);
+                // Validate sequence for Publisher ID (e.g., p001 -> p002)
+                var provided = txtid.Text?.Trim().ToUpper();
+                string q = "SELECT MAX(CAST(SUBSTRING(P_ID,2,3) AS INT)) FROM Publisher";
+                var dt = myconn.Search(q);
+                int maxNum = 0;
+                if (dt != null && dt.Rows.Count > 0 && dt.Rows[0][0] != DBNull.Value)
+                {
+                    int.TryParse(dt.Rows[0][0].ToString(), out maxNum);
+                }
+                int expected = maxNum + 1;
+                var expectedId = "P" + expected.ToString("D3");
+                if (!string.Equals(provided, expectedId, StringComparison.OrdinalIgnoreCase))
+                {
+                    MessageBox.Show($"Publisher ID must be the next in sequence: {expectedId}");
+                    return;
+                }
+
+                string sql = "INSERT INTO Publisher (P_ID, P_Name, Contact, Email, Address) VALUES ('" + txtid.Text + "', @name, @contact, @email, @address)";
+                // Use concatenated SQL with parameters - note: myconn.Save currently doesn't support parameters; keep existing approach but escape single quotes
+                string escName = txtname.Text.Replace("'", "''");
+                string escContact = txtcontact.Text.Replace("'", "''");
+                string escEmail = txtemail.Text.Replace("'", "''");
+                string escAdd = txtadd.Text.Replace("'", "''");
+                string finalSql = $"INSERT INTO Publisher (P_ID, P_Name, Contact, Email, Address) VALUES ('{txtid.Text}','{escName}','{escContact}','{escEmail}','{escAdd}')";
+                myconn.Save(finalSql);
                 MessageBox.Show("Publisher added successfully.");
 
             }

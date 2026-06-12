@@ -18,7 +18,15 @@ namespace Bookshop_Management_System
         {
             Application.SetCompatibleTextRenderingDefault(false);
             Application.EnableVisualStyles();
-            Application.Run(new Bookshop.WelcomeFrame());
+            // Show login as a modal dialog first. If login succeeds, run the main WelcomeFrame as the application's main form.
+            using (var login = new Bookshop.Login())
+            {
+                var dlg = login.ShowDialog();
+                if (dlg == System.Windows.Forms.DialogResult.OK)
+                {
+                    Application.Run(new Bookshop.WelcomeFrame());
+                }
+            }
         }
     }
     }

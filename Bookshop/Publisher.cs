@@ -19,6 +19,7 @@ namespace Bookshop_Management_System.Bookshop
         public Publisher()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -32,6 +33,7 @@ namespace Bookshop_Management_System.Bookshop
             {
                 Controler.PublisherDetails.Insert(textBox6, textBox2, textBox7, textBox3, textBox5);
             }
+            Controler.PublisherDetails.getAll(dataGridView1);
         }
 
         public Boolean validateInput()
@@ -48,7 +50,7 @@ namespace Bookshop_Management_System.Bookshop
             }
             // Validate publisher ID format: should be 'p' followed by three digits (example: p001)
             var pubId = textBox6.Text?.Trim() ?? string.Empty;
-            if (!Controler.validations.IsValidPublisherId(pubId))
+            if (!Controler.Validation.IsValidPublisherId(pubId))
             {
                 MessageBox.Show("Publisher ID must be in the format 'p001' (letter 'p' followed by three digits).");
                 return false;
@@ -59,7 +61,7 @@ namespace Bookshop_Management_System.Bookshop
 
             // Validate email
             var email = textBox3.Text?.Trim() ?? string.Empty;
-            if (!Controler.validations.IsValidEmail(email))
+            if (!Controler.Validation.IsValidEmail(email))
             {
                 MessageBox.Show("Please enter a valid email address.");
                 return false;
@@ -67,7 +69,7 @@ namespace Bookshop_Management_System.Bookshop
 
             // Validate contact number: must start with '07' and be 10 digits long
             var contact = textBox7.Text?.Trim() ?? string.Empty;
-            if (!Controler.validations.IsValidContact(contact))
+            if (!Controler.Validation.IsValidContact(contact))
             {
                 MessageBox.Show("Contact number must start with '07' and be 10 digits long.");
                 return false;
@@ -92,6 +94,7 @@ namespace Bookshop_Management_System.Bookshop
                 }
 
             }
+            Controler.PublisherDetails.getAll(dataGridView1);
         }
 
         private void btnPubReset_Click(object sender, EventArgs e)
@@ -107,15 +110,13 @@ namespace Bookshop_Management_System.Bookshop
                 }
 
             }
+            Controler.PublisherDetails.getAll(dataGridView1);
         }
 
         private void Publisher_Load(object sender, EventArgs e)
         {
             Controler.PublisherDetails.getAll(dataGridView1);
-            foreach (DataGridViewColumn col in dataGridView1.Columns)
-            {
-                MessageBox.Show(col.Name);
-            }
+            
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -135,36 +136,69 @@ namespace Bookshop_Management_System.Bookshop
 
         private void btnBooks_Click(object sender, EventArgs e)
         {
-            Book book = new Book();
-            book.Show();
-            this.Close();
+            using (var book = new Book())
+            {
+                this.Hide();
+                book.ShowDialog();
+                this.Show();
+            }
         }
 
         private void btnAuthor_Click(object sender, EventArgs e)
         {
-            Author author = new Author();
-            author.Show(); this.Close();
+            using (var author = new Author())
+            {
+                this.Hide();
+                author.ShowDialog();
+                this.Show();
+            }
         }
 
         private void btnStaff_Click(object sender, EventArgs e)
         {
-            Staff staff = new Staff();
-            staff.Show(); this.Close();
+            using (var staff = new Staff())
+            {
+                this.Hide();
+                staff.ShowDialog();
+                this.Show();
+            }
         }
 
         private void btnBilling_Click(object sender, EventArgs e)
         {
-            Billing billing = new Billing();
-            billing.Show(); this.Close();
+            using (var billing = new Billing())
+            {
+                this.Hide();
+                billing.ShowDialog();
+                this.Show();
+            }
         }
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
-            Login login = new Login();
-            login.Show();
-            GlobalData.LoggedInUser = "";
-            GlobalData.UserRole = "";
-            this.Close();
+            GlobalData.LoggedInUser = string.Empty;
+            GlobalData.UserRole = string.Empty;
+
+            var openForms = Application.OpenForms.Cast<Form>().ToList();
+            foreach (var f in openForms)
+            {
+                if (f is Login) continue;
+                try { f.Hide(); } catch { }
+            }
+
+            using (var login = new Login())
+            {
+                var res = login.ShowDialog();
+                if (res == DialogResult.OK)
+                {
+                    var wf = Application.OpenForms.OfType<WelcomeFrame>().FirstOrDefault();
+                    if (wf != null) wf.Show();
+                }
+                else
+                {
+                    Application.Exit();
+                }
+            }
         }
     }
     
