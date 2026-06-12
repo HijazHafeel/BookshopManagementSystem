@@ -16,7 +16,29 @@ namespace Bookshop_Management_System.Controler
         {
             try
             {
-                string sql = "INSERT INTO Author (A_ID, A_Name, Address, Contact, Gender,Email)  VALUES ('" + txtAuthId.Text + "', '" + txtAuthName.Text + "','" + txtAuthAddress.Text+ "' '" + txtAuthPhone.Text + "', '" + cmbAuthGender.SelectedItem.ToString() + "', '" + txtAuthEmail.Text+ "')";
+                // Ensure author ID is sequential (e.g., A001 -> A002)
+                var provided = txtAuthId.Text?.Trim().ToUpper();
+                string q = "SELECT MAX(CAST(SUBSTRING(A_ID,2,3) AS INT)) FROM Author";
+                var dt = model.myconn.Search(q);
+                int maxNum = 0;
+                if (dt != null && dt.Rows.Count > 0 && dt.Rows[0][0] != DBNull.Value)
+                {
+                    int.TryParse(dt.Rows[0][0].ToString(), out maxNum);
+                }
+                int expected = maxNum + 1;
+                var expectedId = "A" + expected.ToString("D3");
+                if (!string.Equals(provided, expectedId, StringComparison.OrdinalIgnoreCase))
+                {
+                    MessageBox.Show($"Author ID must be the next in sequence: {expectedId}");
+                    return;
+                }
+
+                string escName = txtAuthName.Text.Replace("'", "''");
+                string escPhone = txtAuthPhone.Text.Replace("'", "''");
+                string escEmail = txtAuthEmail.Text.Replace("'", "''");
+                string escAddress = txtAuthAddress.Text.Replace("'", "''");
+                string gender = cmbAuthGender.SelectedItem?.ToString() ?? string.Empty;
+                string sql = $"INSERT INTO Author (A_ID, A_Name, Address, Contact, Gender, Email) VALUES ('{txtAuthId.Text}','{escName}','{escAddress}','{escPhone}','{gender}','{escEmail}')";
                 model.myconn.Save(sql);
                 MessageBox.Show("Author details saved.");
             }

@@ -17,6 +17,7 @@ namespace Bookshop_Management_System.Bookshop
         public Staff()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -53,11 +54,15 @@ namespace Bookshop_Management_System.Bookshop
             {
                 Controler.StaffDetails.Update(txtUId, txtFName, txtLName, txtContact, txtEmail, txtAddress, comboBox1);
             }
-        }}
+                
+            }
+            Controler.StaffDetails.getAll(dataGridView1);
+        }
 
         private void Staff_Load(object sender, EventArgs e)
         {
             Controler.StaffDetails.getAll(dataGridView1);
+            
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -65,9 +70,9 @@ namespace Bookshop_Management_System.Bookshop
             if(IsValidInput())
             {
                 Controler.StaffDetails.Insert(txtUId, txtFName, txtLName, txtContact, txtEmail, txtAddress, comboBox1);
-                Controler.StaffDetails.getAll(dataGridView1);
+                
             }
-            
+            Controler.StaffDetails.getAll(dataGridView1);
         }
 
         public bool IsValidInput()
@@ -84,18 +89,18 @@ namespace Bookshop_Management_System.Bookshop
                 return false;
             }
 
-            if (!Controler.validations.IsValidContact(txtContact.Text))
+            if (!Controler.Validation.IsValidContact(txtContact.Text))
             {
                 MessageBox.Show("Please enter a valid contact number (10 digits, starting with 07).");
                 return false;
             }
-            if(!Controler.validations.IsValidEmail(txtEmail.Text))
+            if(!Controler.Validation.IsValidEmail(txtEmail.Text))
             {
                 MessageBox.Show("Please enter a valid email address.");
                 return false;
             }
 
-            if(!Controler.validations.IsValidStaffId(txtUId.Text))
+            if(!Controler.Validation.IsValidStaffId(txtUId.Text))
             {
                 MessageBox.Show("Please enter a valid Staff ID (e.g., U001).");
                 return false;
@@ -135,23 +140,32 @@ namespace Bookshop_Management_System.Bookshop
 
         private void btnBooks_Click(object sender, EventArgs e)
         {
-            Book book = new Book();
-            book.Show();
-            this.Close();
+            using (var book = new Book())
+            {
+                this.Hide();
+                book.ShowDialog();
+                this.Show();
+            }
         }
 
         private void btnAuthor_Click(object sender, EventArgs e)
         {
-            Author author = new Author();
-            author.Show();
-            this.Close();
+            using (var author = new Author())
+            {
+                this.Hide();
+                author.ShowDialog();
+                this.Show();
+            }
         }
 
         private void btnPublisher_Click(object sender, EventArgs e)
         {
-            Publisher publisher = new Publisher();
-            publisher.Show();
-            this.Close();
+            using (var publisher = new Publisher())
+            {
+                this.Hide();
+                publisher.ShowDialog();
+                this.Show();
+            }
         }
 
         private void btnStaff_Click(object sender, EventArgs e)
@@ -161,18 +175,40 @@ namespace Bookshop_Management_System.Bookshop
 
         private void btnBilling_Click(object sender, EventArgs e)
         {
-            Billing billing = new Billing();
-            billing.Show();
-            this.Close();
+            using (var billing = new Billing())
+            {
+                this.Hide();
+                billing.ShowDialog();
+                this.Show();
+            }
         }
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
-            Login login = new Login();
-            login.Show();
-            GlobalData.LoggedInUser = "";
-            GlobalData.UserRole = "";
-            this.Close();
+            Controler.GlobalData.LoggedInUser = string.Empty;
+            Controler.GlobalData.UserRole = string.Empty;
+            Controler.GlobalData.UserID = string.Empty;
+
+            var openForms = Application.OpenForms.Cast<Form>().ToList();
+            foreach (var f in openForms)
+            {
+                if (f is Login) continue;
+                try { f.Hide(); } catch { }
+            }
+
+            using (var login = new Login())
+            {
+                var res = login.ShowDialog();
+                if (res == DialogResult.OK)
+                {
+                    var wf = Application.OpenForms.OfType<WelcomeFrame>().FirstOrDefault();
+                    if (wf != null) wf.Show();
+                }
+                else
+                {
+                    Application.Exit();
+                }
+            }
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -181,9 +217,9 @@ namespace Bookshop_Management_System.Bookshop
             if (e.RowIndex < 0) return;
             var row = this.dataGridView1.Rows[e.RowIndex];
             // Use column names to get values safely
-            this.txtUId.Text = row.Cells["U_ID"].Value?.ToString() ?? string.Empty;
-            this.txtFName.Text = row.Cells["F_name"].Value?.ToString() ?? string.Empty;
-            this.txtLName.Text = row.Cells["L_Name"].Value?.ToString() ?? string.Empty;
+            this.txtUId.Text = row.Cells["UserId"].Value?.ToString() ?? string.Empty;
+            this.txtFName.Text = row.Cells["FName"].Value?.ToString() ?? string.Empty;
+            this.txtLName.Text = row.Cells["LName"].Value?.ToString() ?? string.Empty;
             this.txtContact.Text = row.Cells["Contact"].Value?.ToString() ?? string.Empty;
             this.txtEmail.Text = row.Cells["Email"].Value?.ToString() ?? string.Empty;
             this.txtAddress.Text = row.Cells["Address"].Value?.ToString() ?? string.Empty;

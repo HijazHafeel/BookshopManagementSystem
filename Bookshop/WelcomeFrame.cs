@@ -13,48 +13,65 @@ namespace Bookshop_Management_System.Bookshop
     public partial class WelcomeFrame : Form
     {
 
-        String username = Controler.LogIn.GlobalData.LoggedInUser;
-        string role = Controler.LogIn.GlobalData.UserRole;
+        String username = Controler.GlobalData.LoggedInUser;
+        string role = Controler.GlobalData.UserRole;
         
 
         public WelcomeFrame()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
         
         private void button2_Click(object sender, EventArgs e)
         {
-            Staff staff = new Staff();
-            staff.Show();
-            this.Close();
+            // Open staff form as dialog and keep WelcomeFrame alive
+            using (var staff = new Staff())
+            {
+                this.Hide();
+                staff.ShowDialog();
+                this.Show();
+            }
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            Author author = new Author();
-            author.Show();
-            this.Close();
+            using (var author = new Author())
+            {
+                this.Hide();
+                author.ShowDialog();
+                this.Show();
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Book book = new Book();
-            book.Show();
-            this.Hide();
+            using (var book = new Book())
+            {
+                this.Hide();
+                book.ShowDialog();
+                this.Show();
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            Publisher publisher = new Publisher();
-            publisher.Show();
-            this.Close();
+            using (var publisher = new Publisher())
+            {
+                this.Hide();
+                publisher.ShowDialog();
+                this.Show();
+            }
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-            Billing billing = new Billing();
-            billing.Show();
-            this.Close();
+            using (var billing = new Billing())
+            {
+                this.Hide();
+                billing.ShowDialog();
+                this.Show();
+            }
         }
 
         private void WelcomeFrame_Load(object sender, EventArgs e)

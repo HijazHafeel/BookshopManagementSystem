@@ -16,6 +16,7 @@ namespace Bookshop_Management_System.Bookshop
         public NewUser()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
@@ -115,9 +116,8 @@ namespace Bookshop_Management_System.Bookshop
 
         private void llblLogin_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Login frm = new Login();
-            frm.Show();
-            this.Hide();
+            // Close this dialog to return to the existing Login form that opened this dialog.
+            this.Close();
         }
 
         private void label3_Click(object sender, EventArgs e)

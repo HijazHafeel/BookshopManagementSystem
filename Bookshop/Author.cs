@@ -19,6 +19,7 @@ namespace Bookshop_Management_System.Bookshop
         public Author()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -60,6 +61,7 @@ namespace Bookshop_Management_System.Bookshop
                 Controler.AuthorDetails.Insert(txtAuthId, txtAuthName, txtAuthContact, txtAuthEmail, txtAuthAdd, cmbGender);
 
             }
+            Controler.AuthorDetails.getAll(AuthorTable);
         }
 
         private Boolean IsValidInput()
@@ -115,6 +117,7 @@ namespace Bookshop_Management_System.Bookshop
                 }
                 
             }
+            Controler.AuthorDetails.getAll(AuthorTable);
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -132,13 +135,14 @@ namespace Bookshop_Management_System.Bookshop
                 }
                 
             }
+            Controler.AuthorDetails.getAll(AuthorTable);
         }
 
         private void Author_Load(object sender, EventArgs e)
         {
             Controler.AuthorDetails.getAll(AuthorTable);
             // Wire up cell click handler to populate fields when a row is clicked
-            this.AuthorTable.CellClick += new DataGridViewCellEventHandler(this.AuthorTable_CellClick);
+            //this.AuthorTable.CellClick += new DataGridViewCellEventHandler(this.AuthorTable_CellClick);
         }
 
         private void AuthorTable_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -171,9 +175,12 @@ namespace Bookshop_Management_System.Bookshop
 
         private void btnBooks_Click(object sender, EventArgs e)
         {
-            Book book = new Book();
-            book.Show();
-            this.Close();
+            using (var book = new Book())
+            {
+                this.Hide();
+                book.ShowDialog();
+                this.Show();
+            }
         }
 
         private void btnAuthor_Click(object sender, EventArgs e)
@@ -183,32 +190,60 @@ namespace Bookshop_Management_System.Bookshop
 
         private void btnPublisher_Click(object sender, EventArgs e)
         {
-            Publisher publisher = new Publisher();
-            publisher.Show();
-            this.Close();
+            using (var publisher = new Publisher())
+            {
+                this.Hide();
+                publisher.ShowDialog();
+                this.Show();
+            }
         }
 
         private void btnStaff_Click(object sender, EventArgs e)
         {
-            Staff staff = new Staff();
-            staff.Show();
-            this.Close();
+            using (var staff = new Staff())
+            {
+                this.Hide();
+                staff.ShowDialog();
+                this.Show();
+            }
         }
 
         private void btnBilling_Click(object sender, EventArgs e)
         {
-            Billing billing = new Billing();
-            billing.Show();
-            this.Close();
+            using (var billing = new Billing())
+            {
+                this.Hide();
+                billing.ShowDialog();
+                this.Show();
+            }
         }
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
-            Login login = new Login();
-            login.Show();
-            GlobalData.LoggedInUser = "";
-            GlobalData.UserRole = "";
-            this.Close();
+            Controler.GlobalData.LoggedInUser = string.Empty;
+            Controler.GlobalData.UserRole = string.Empty;
+            Controler.GlobalData.UserID = string.Empty;
+
+            var openForms = Application.OpenForms.Cast<Form>().ToList();
+            foreach (var f in openForms)
+            {
+                if (f is Login) continue;
+                try { f.Hide(); } catch { }
+            }
+
+            using (var login = new Login())
+            {
+                var res = login.ShowDialog();
+                if (res == DialogResult.OK)
+                {
+                    var wf = Application.OpenForms.OfType<WelcomeFrame>().FirstOrDefault();
+                    if (wf != null) wf.Show();
+                }
+                else
+                {
+                    Application.Exit();
+                }
+            }
 
         }
 

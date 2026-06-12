@@ -17,6 +17,7 @@ namespace Bookshop_Management_System.Bookshop
         public FogetPassword()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
 
         private void txtUname_TextChanged(object sender, EventArgs e)
@@ -26,8 +27,7 @@ namespace Bookshop_Management_System.Bookshop
 
         private void btnReturnLogin_Click(object sender, EventArgs e)
         {
-            Login frm = new Login();
-            frm.Show();
+            // Close this dialog to return to the existing Login form that opened this dialog.
             this.Close();
         }
 

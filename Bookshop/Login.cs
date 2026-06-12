@@ -16,6 +16,7 @@ namespace Bookshop_Management_System.Bookshop
         public Login()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -55,10 +56,12 @@ namespace Bookshop_Management_System.Bookshop
 
         private void llblFPd_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            FogetPassword frm = new FogetPassword();
-            frm.Show();
-            this.Hide();
-           // Application.Exit();
+            using (var frm = new FogetPassword())
+            {
+                this.Hide();
+                frm.ShowDialog();
+                this.Show();
+            }
         }
 
         private void label3_Click_1(object sender, EventArgs e)
@@ -79,18 +82,21 @@ namespace Bookshop_Management_System.Bookshop
         private void btnLogin_Click(object sender, EventArgs e)
         {
            if(Controler.LogIn.LogInbtn(txtUname, txtPass)) {
-                WelcomeFrame frm = new WelcomeFrame();
-                frm.Show();
-                this.Hide();
+                // Signal successful login to Program.Main and close the dialog
+                this.DialogResult = DialogResult.OK;
+                this.Close();
             }
             
         }
 
         private void llblReg_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            NewUser frm = new NewUser();
-            frm.Show();
-            this.Hide();
+            using (var frm = new NewUser())
+            {
+                this.Hide();
+                frm.ShowDialog();
+                this.Show();
+            }
         }
     }
 }

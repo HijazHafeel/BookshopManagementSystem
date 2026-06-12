@@ -15,10 +15,10 @@ namespace Bookshop_Management_System
 {
     public partial class Book : Form
     {
-        
         public Book()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -61,6 +61,7 @@ namespace Bookshop_Management_System
             {
                 Controler.BookDetails.Insert(textBox7,textBox1,comboBox2, comboBox1,textBox3, textBox4, comboBox3);
             }
+            Controler.BookDetails.getAll(dataGridView1);
         }
 
         private void label9_Click(object sender, EventArgs e)
@@ -77,6 +78,7 @@ namespace Bookshop_Management_System
             {
                 Controler.BookDetails.delete(textBox7);
             }
+            Controler.BookDetails.getAll(dataGridView1);
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -109,7 +111,7 @@ namespace Bookshop_Management_System
             }
             // Validate ISBN length: allow 10 or 13 digits (ignore hyphens/spaces)
             var isbnRaw = textBox7.Text ?? string.Empty;
-            if(Controler.validations.IsValidIsbn(isbnRaw))
+            if(!Controler.Validation.IsValidIsbn(isbnRaw))
             {
                 MessageBox.Show("Please enter a valid ISBN (10 or 13 digits, with optional hyphens).");
                 return false;
@@ -124,46 +126,80 @@ namespace Bookshop_Management_System
             if(validateInput()) {
                 Controler.BookDetails.Update(textBox7, textBox1, comboBox2, comboBox1, textBox3, textBox4, comboBox3);
             }
+            Controler.BookDetails.getAll(dataGridView1);
         }
 
         private void btnAuthor_Click(object sender, EventArgs e)
         {
-            Author author = new Author();
-            author.Show();
-            this.Close();
+            using (var author = new Author())
+            {
+                this.Hide();
+                author.ShowDialog();
+                this.Show();
+            }
 
 
         }
 
         private void btnPublisher_Click(object sender, EventArgs e)
         {
-            Publisher publisher = new Publisher();
-            publisher.Show();
-            this.Close();
+            using (var publisher = new Publisher())
+            {
+                this.Hide();
+                publisher.ShowDialog();
+                this.Show();
+            }
         }
 
         private void btnStaff_Click(object sender, EventArgs e)
         {
-            Staff staff = new Staff();
-            staff.Show();
-            this.Close();
+            using (var staff = new Staff())
+            {
+                this.Hide();
+                staff.ShowDialog();
+                this.Show();
+            }
 
         }
 
         private void btnBilling_Click(object sender, EventArgs e)
         {
-            Billing billing = new Billing();
-            billing.Show();
-            this.Close();
+            using (var billing = new Billing())
+            {
+                this.Hide();
+                billing.ShowDialog();
+                this.Show();
+            }
         }
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
-            Login login = new Login();
-            login.Show();
-            GlobalData.LoggedInUser = "";
-            GlobalData.UserRole = "";
-            this.Close();
+            // Clear session
+            Controler.GlobalData.LoggedInUser = string.Empty;
+            Controler.GlobalData.UserRole = string.Empty;
+            Controler.GlobalData.UserID = string.Empty;
+
+            // Hide all open non-login forms
+            var openForms = Application.OpenForms.Cast<Form>().ToList();
+            foreach (var f in openForms)
+            {
+                if (f is Login) continue;
+                try { f.Hide(); } catch { }
+            }
+
+            using (var login = new Login())
+            {
+                var res = login.ShowDialog();
+                if (res == DialogResult.OK)
+                {
+                    var wf = Application.OpenForms.OfType<WelcomeFrame>().FirstOrDefault();
+                    if (wf != null) wf.Show();
+                }
+                else
+                {
+                    Application.Exit();
+                }
+            }
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)

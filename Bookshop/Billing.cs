@@ -21,7 +21,7 @@ namespace Bookshop_Management_System.Bookshop
         public Billing()
         {
             InitializeComponent();
-           
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
 
         private void DataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
@@ -210,10 +210,10 @@ namespace Bookshop_Management_System.Bookshop
                     return;
                 }
                 // Use a default user id and customer name for now; adjust as needed
-                string userId = "u001";
+                
                 string total = textBox6.Text;
 
-                Controler.Billings.SaveBilling(dataGridView1, userId,total);
+                Controler.Billings.SaveBilling(dataGridView1,total);
 
                 // Clear the grid after saving
                 dataGridView1.Rows.Clear();
