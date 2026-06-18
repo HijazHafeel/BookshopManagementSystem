@@ -23,10 +23,7 @@ namespace Bookshop_Management_System.Controler
                     txt2.Text = r["B_Name"].ToString().Trim();
                     txt3.Text = r["B_Price"].ToString().Trim();
                 }
-                else
-                {
-                    MessageBox.Show("Book not found.");
-                }
+               
             }
             catch (Exception ex)
             {
