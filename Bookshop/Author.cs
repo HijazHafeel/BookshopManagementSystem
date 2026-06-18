@@ -145,7 +145,7 @@ namespace Bookshop_Management_System.Bookshop
             //this.AuthorTable.CellClick += new DataGridViewCellEventHandler(this.AuthorTable_CellClick);
         }
 
-        private void AuthorTable_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void AuthorTable_CellClick_1(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0) return;
             var row = this.AuthorTable.Rows[e.RowIndex];
@@ -247,7 +247,7 @@ namespace Bookshop_Management_System.Bookshop
 
         }
 
-        private void AuthorTable_CellClick_1(object sender, DataGridViewCellEventArgs e)
+        private void AuthorTable_CellClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

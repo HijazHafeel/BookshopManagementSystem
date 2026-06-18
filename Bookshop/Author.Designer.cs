@@ -481,7 +481,7 @@
             // 
             // Author
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+           this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1365, 648);
             this.Controls.Add(this.panel4);
@@ -490,9 +490,9 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
-            //this.Name = "Author";
+            //this.Name = "Author Name";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "7";
+            this.Text = "Author";
             this.Load += new System.EventHandler(this.Author_Load);
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();

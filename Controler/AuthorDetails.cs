@@ -112,7 +112,7 @@ namespace Bookshop_Management_System.Controler
             {
                 string sql = "SELECT * FROM Author";
                 DataTable dt = model.myconn.Search(sql);
-
+                dgv.Rows.Clear();
                 foreach (DataRow row in dt.Rows)
                 {
                     var r = row;
