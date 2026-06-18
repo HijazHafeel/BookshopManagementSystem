@@ -34,6 +34,43 @@ namespace Bookshop_Management_System.Controler
 
         // Saves billing information to the database
         // dg: expected columns include a Quantity column (assumed at index 3 based on your comment)
+        /* public static void SaveBilling(DataGridView dg, string total)
+         {
+             try
+             {
+                 if (dg.Rows.Count == 0 || (dg.AllowUserToAddRows && dg.Rows.Count == 1))
+                 {
+                     MessageBox.Show("No items in the cart to save.");
+                     return;
+                 }
+
+                 // FIXED: Calculate the actual sum of quantities instead of just counting rows
+                 int totalQty = 0;
+                 foreach (DataGridViewRow row in dg.Rows)
+                 {
+                     if (row.IsNewRow) continue; // Skip the empty placeholder row at the bottom
+
+
+                     if (row.Cells[3].Value != null && int.TryParse(row.Cells[3].Value.ToString(), out int rowQty))
+                     {
+                         totalQty += rowQty;
+                     }
+                 }
+
+                 string userId = Controler.GlobalData.UserID;
+
+                 string sql = "INSERT INTO Billing (U_ID, Qty, Total_Amount) VALUES ('" + userId.Replace("'", "''") + "', " + totalQty + ", " + total + ")";
+                 myconn.Save(sql);
+
+                 MessageBox.Show("Billing records saved successfully.");
+             }
+             catch (Exception ex)
+             {
+                 Console.WriteLine(ex);
+                 MessageBox.Show("Failed to save billing: " + ex.Message);
+             }
+         }
+        */
         public static void SaveBilling(DataGridView dg, string total)
         {
             try
@@ -44,26 +81,53 @@ namespace Bookshop_Management_System.Controler
                     return;
                 }
 
-                // FIXED: Calculate the actual sum of quantities instead of just counting rows
+                // Step 1: Validate all rows have enough stock BEFORE making any changes
+                foreach (DataGridViewRow row in dg.Rows)
+                {
+                    if (row.IsNewRow) continue;
+
+                    string isbn = row.Cells[0].Value?.ToString().Trim() ?? "";
+                    if (!int.TryParse(row.Cells[3].Value?.ToString(), out int requestedQty) || requestedQty <= 0)
+                    {
+                        MessageBox.Show($"Invalid quantity for ISBN: {isbn}");
+                        return;
+                    }
+
+                    // Check current stock for this book
+                   
+                }
+
+                // Step 2: All stock checks passed — calculate total qty
                 int totalQty = 0;
                 foreach (DataGridViewRow row in dg.Rows)
                 {
-                    if (row.IsNewRow) continue; // Skip the empty placeholder row at the bottom
-
-                    // Assumes Qty is in the 4th column (index 3) based on your comment: ISBN, Book_Name, Price, Qty, Total
-                    if (row.Cells[3].Value != null && int.TryParse(row.Cells[3].Value.ToString(), out int rowQty))
-                    {
-                        totalQty += rowQty;
-                    }
+                    if (row.IsNewRow) continue;
+                    if (int.TryParse(row.Cells[3].Value?.ToString(), out int qty))
+                        totalQty += qty;
                 }
 
+                // Step 3: Insert the billing record
                 string userId = Controler.GlobalData.UserID;
+                string billingSql =
+                    "INSERT INTO Billing (U_ID, Qty, Total_Amount) VALUES ('" +
+                    userId.Replace("'", "''") + "', " + totalQty + ", " + total + ")";
+                myconn.Save(billingSql);
 
-                // Build and execute the INSERT statement
-                string sql = "INSERT INTO Billing (U_ID, Qty, Total_Amount) VALUES ('" + userId.Replace("'", "''") + "', " + totalQty + ", " + total + ")";
-                myconn.Save(sql);
+                // Step 4: Reduce stock for each book in the cart
+                foreach (DataGridViewRow row in dg.Rows)
+                {
+                    if (row.IsNewRow) continue;
 
-                MessageBox.Show("Billing records saved successfully.");
+                    string isbn = row.Cells[0].Value?.ToString().Trim() ?? "";
+                    int.TryParse(row.Cells[3].Value?.ToString(), out int qty);
+
+                    string updateStockSql =
+                        "UPDATE Book SET Stock = CAST(Stock AS INT) - " + qty +
+                        " WHERE B_ISBN = '" + isbn.Replace("'", "''") + "'";
+                    myconn.Save(updateStockSql);
+                }
+
+                MessageBox.Show("Billing saved and stock updated successfully.");
             }
             catch (Exception ex)
             {
@@ -72,13 +136,12 @@ namespace Bookshop_Management_System.Controler
             }
         }
 
-        // Mirrors original signature; synchronized to use consistent database column names
         public static void Insert(TextBox jtf1, TextBox jtf2, TextBox jtf3, TextBox jtf4, TextBox jtf5)
         {
             try
             {
                 // FIXED: Changed column names to match the 'Search' method schema (B_ISBN, B_Name, B_Price)
-                string sql = "SELECT * FROM Book WHERE B_ISBN = '" + jtf1.Text.Replace("'", "''") + "'";
+                string sql = "SELECT B_Name, B_Price FROM Book WHERE B_ISBN = '" + jtf1.Text.Replace("'", "''") + "'";
                 DataTable dt = myconn.Search(sql);
 
                 if (dt.Rows.Count > 0)
@@ -144,6 +207,37 @@ namespace Bookshop_Management_System.Controler
                 Console.WriteLine(ex);
                 MessageBox.Show("An error occurred during search: " + ex.Message);
             }
+        }
+
+        public static bool checkstock(string isbn, int requestedQty) {
+
+            DataTable stockDt = myconn.Search(
+                       "SELECT B_Name, Stock FROM Book WHERE B_ISBN = '" + isbn.Replace("'", "''") + "'"
+                   );
+            DataRow r = stockDt.Rows[0];
+            if (stockDt.Rows.Count == 0)
+            {
+                MessageBox.Show($"Book with ISBN '{isbn}' not found in inventory.");
+                return false;
+            }
+
+            if (!int.TryParse(stockDt.Rows[0]["Stock"].ToString(), out int currentStock))
+            {
+                MessageBox.Show($"Could not read stock for ISBN: {isbn}");
+                return false;
+            }
+
+            if (requestedQty > currentStock)
+            {
+                string bookName = r["B_Name"].ToString()?? isbn;
+                MessageBox.Show(
+                    $"Insufficient stock for '{bookName}'.\n" +
+                    $"Requested: {requestedQty}  |  Available: {currentStock}"
+                );
+                return false;
+            }
+
+            return true;
         }
     }
 }

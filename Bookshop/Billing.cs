@@ -141,6 +141,10 @@ namespace Bookshop_Management_System.Bookshop
             }
             else
             {
+                if (!Controler.Billings.checkstock(textBox1.Text, int.Parse(textBox4.Text)))
+                {
+                    return;
+                }
                 try
                 {
                     // Controler.Billings.Insert(textBox1, textBox2, textBox3, textBox4);

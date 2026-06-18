@@ -63,6 +63,16 @@ namespace Bookshop_Management_System.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_arrow_24 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-arrow-24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_arrowleft_24 {
             get {
                 object obj = ResourceManager.GetObject("icons8-arrowleft-24", resourceCulture);
