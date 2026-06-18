@@ -36,7 +36,7 @@ namespace Bookshop_Management_System.Controler
                     return;
                 }
 
-               string sql = "INSERT INTO Staff (U_ID, F_name,L_Name,Address,Contact,Gender,Email,Role) VALUES ('" + txtUserID.Text+"', '"+txtFName.Text+"', '"+txtLName.Text+"', '"+txtUserAdd.Text+"', '"+txtUserContact.Text+"', '"+ (cmbGende.SelectedItem?.ToString() ?? string.Empty) +"', '"+txtUserEmail.Text+"', 'Staff')";
+               string sql = "INSERT INTO Staff (U_ID, F_name,L_Name,Address,Contact,Gender,Email,Role) VALUES ('" + txtUserID.Text+"', '"+txtFName.Text+"', '"+txtLName.Text+"', '"+txtUserAdd.Text+"', '"+txtUserContact.Text+"', '"+ (cmbGende.SelectedItem?.ToString() ?? string.Empty) +"', '"+txtUserEmail.Text.ToLower() + "', 'Staff')";
 
                model.myconn.Save(sql);
                 MessageBox.Show("Data Inserted Successfully");
@@ -51,7 +51,7 @@ namespace Bookshop_Management_System.Controler
         {
             try
             {
-                string sql = "UPDATE Staff SET F_name = '" + txtFName.Text + "', L_Name = '" + txtLName.Text + "', Address = '" + txtUserAdd.Text + "', Contact = '" + txtUserContact.Text + "', Gender = '" + cmbGende.SelectedItem?.ToString() ?? string.Empty + "', Email = '" + txtUserEmail.Text + "' WHERE U_ID = '" + txtUserID.Text + "'";
+                string sql = "UPDATE Staff SET F_name = '" + txtFName.Text + "', L_Name = '" + txtLName.Text + "', Address = '" + txtUserAdd.Text + "', Contact = '" + txtUserContact.Text + "', Gender = '" + cmbGende.SelectedItem?.ToString() ?? string.Empty + "', Email = '" + txtUserEmail.Text.ToLower() + "' WHERE U_ID = '" + txtUserID.Text + "'";
                 model.myconn.Save(sql);
                 MessageBox.Show("Data Updated Successfully");
             }
@@ -93,7 +93,7 @@ namespace Bookshop_Management_System.Controler
                         row["Address"].ToString(),
                         row["Contact"].ToString(),
                         row["Gender"].ToString(),
-                        row["Email"].ToString()
+                        row["Email"].ToString().ToLower()
                     );
                 }
             }

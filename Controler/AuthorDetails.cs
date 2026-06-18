@@ -35,7 +35,7 @@ namespace Bookshop_Management_System.Controler
 
                 string escName = txtAuthName.Text.Replace("'", "''");
                 string escPhone = txtAuthPhone.Text.Replace("'", "''");
-                string escEmail = txtAuthEmail.Text.Replace("'", "''");
+                string escEmail = txtAuthEmail.Text.Replace("'", "''").ToLower();
                 string escAddress = txtAuthAddress.Text.Replace("'", "''");
                 string gender = cmbAuthGender.SelectedItem?.ToString() ?? string.Empty;
                 string sql = $"INSERT INTO Author (A_ID, A_Name, Address, Contact, Gender, Email) VALUES ('{txtAuthId.Text}','{escName}','{escAddress}','{escPhone}','{gender}','{escEmail}')";
@@ -53,7 +53,7 @@ namespace Bookshop_Management_System.Controler
         {
             try
             {
-                string sql = "UPDATE Author SET A_Name = '" + txtAuthName.Text + "', Address = '" + txtAuthAddress.Text + "', Contact = '" + txtAuthPhone.Text + "', Gender = '" + cmbAuthGender.SelectedItem.ToString() + "', Email = '" + txtAuthEmail.Text + "' WHERE A_ID = '" + txtAuthId.Text + "'";
+                string sql = "UPDATE Author SET A_Name = '" + txtAuthName.Text + "', Address = '" + txtAuthAddress.Text + "', Contact = '" + txtAuthPhone.Text + "', Gender = '" + cmbAuthGender.SelectedItem.ToString() + "', Email = '" + txtAuthEmail.Text.ToLower() + "' WHERE A_ID = '" + txtAuthId.Text + "'";
                 model.myconn.Save(sql);
                 MessageBox.Show("Author details updated.");
             }
@@ -116,7 +116,7 @@ namespace Bookshop_Management_System.Controler
                 foreach (DataRow row in dt.Rows)
                 {
                     var r = row;
-                    dgv.Rows.Add(r["A_ID"].ToString(), r["A_Name"].ToString(), r["Contact"].ToString(), r["Email"].ToString(),r["Address"].ToString(), r["Gender"].ToString() );
+                    dgv.Rows.Add(r["A_ID"].ToString(), r["A_Name"].ToString(), r["Contact"].ToString(), r["Email"].ToString().ToLower(),r["Address"].ToString(), r["Gender"].ToString() );
                 }
                 
             }

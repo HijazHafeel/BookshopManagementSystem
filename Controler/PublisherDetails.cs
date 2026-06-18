@@ -82,7 +82,7 @@ namespace Bookshop_Management_System.Controler
                 // Use concatenated SQL with parameters - note: myconn.Save currently doesn't support parameters; keep existing approach but escape single quotes
                 string escName = txtname.Text.Replace("'", "''");
                 string escContact = txtcontact.Text.Replace("'", "''");
-                string escEmail = txtemail.Text.Replace("'", "''");
+                string escEmail = txtemail.Text.Replace("'", "''").ToLower();
                 string escAdd = txtadd.Text.Replace("'", "''");
                 string finalSql = $"INSERT INTO Publisher (P_ID, P_Name, Contact, Email, Address) VALUES ('{txtid.Text}','{escName}','{escContact}','{escEmail}','{escAdd}')";
                 myconn.Save(finalSql);
@@ -100,7 +100,7 @@ namespace Bookshop_Management_System.Controler
         {
             try
             {
-                string sql = "UPDATE Publisher SET P_Name = '" + txtname.Text + "', Contact = '" + txtcontact.Text + "', Email = '" + txtemail.Text + "', Address = '" + txtadd.Text + "' WHERE P_ID = '" + txtid.Text + "'";
+                string sql = "UPDATE Publisher SET P_Name = '" + txtname.Text + "', Contact = '" + txtcontact.Text + "', Email = '" + txtemail.Text.ToLower() + "', Address = '" + txtadd.Text + "' WHERE P_ID = '" + txtid.Text + "'";
                 model.myconn.Save(sql);
 
             }
@@ -137,7 +137,7 @@ namespace Bookshop_Management_System.Controler
                 foreach (DataRow row in dt.Rows)
                 {
                     var r = row;
-                    dgv.Rows.Add(r["P_ID"].ToString(), r["P_Name"].ToString(), r["Address"].ToString(), r["Contact"].ToString(), r["Email"].ToString());
+                    dgv.Rows.Add(r["P_ID"].ToString(), r["P_Name"].ToString(), r["Address"].ToString(), r["Contact"].ToString(), r["Email"].ToString().ToLower());
                 }
             }
             catch (Exception ex)
