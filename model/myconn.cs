@@ -19,7 +19,7 @@ namespace Bookshop_Management_System.model
             {
                 if (conn == null)
                 {
-                    string connectionString = "Server=localhost\\SQLEXPRESS;Database=Bookshop;Integrated Security=True;";
+                    string connectionString = "Server=LAPTOP-CBR2E6D3\\SQLEXPRESS;Database=Bookshop;Integrated Security=True;";
 
                     conn = new SqlConnection(connectionString);
                     conn.Open();
