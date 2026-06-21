@@ -24,7 +24,7 @@ namespace Bookshop_Management_System
                 var dlg = login.ShowDialog();
                 if (dlg == System.Windows.Forms.DialogResult.OK)
                 {
-                    Application.Run(new Bookshop.Staff());
+                    Application.Run(new Bookshop.WelcomeFrame());
                 }
             }
         }
