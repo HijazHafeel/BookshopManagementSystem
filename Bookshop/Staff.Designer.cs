@@ -77,7 +77,7 @@
             // 
             this.txtContact.Location = new System.Drawing.Point(617, 53);
             this.txtContact.Name = "txtContact";
-            this.txtContact.Size = new System.Drawing.Size(113, 20);
+            this.txtContact.Size = new System.Drawing.Size(127, 20);
             this.txtContact.TabIndex = 28;
             // 
             // label11
@@ -151,7 +151,7 @@
             this.label9.AutoSize = true;
             this.label9.BackColor = System.Drawing.SystemColors.ControlDark;
             this.label9.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(247, 173);
+            this.label9.Location = new System.Drawing.Point(320, 177);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(91, 18);
             this.label9.TabIndex = 19;
@@ -173,14 +173,14 @@
             // 
             // txtLName
             // 
-            this.txtLName.Location = new System.Drawing.Point(376, 53);
+            this.txtLName.Location = new System.Drawing.Point(393, 53);
             this.txtLName.Name = "txtLName";
             this.txtLName.Size = new System.Drawing.Size(139, 20);
             this.txtLName.TabIndex = 11;
             // 
             // txtFName
             // 
-            this.txtFName.Location = new System.Drawing.Point(178, 53);
+            this.txtFName.Location = new System.Drawing.Point(195, 53);
             this.txtFName.Name = "txtFName";
             this.txtFName.Size = new System.Drawing.Size(133, 20);
             this.txtFName.TabIndex = 10;
@@ -210,7 +210,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(373, 32);
+            this.label4.Location = new System.Drawing.Point(390, 32);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(84, 18);
             this.label4.TabIndex = 5;
@@ -220,7 +220,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(184, 32);
+            this.label3.Location = new System.Drawing.Point(201, 32);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(83, 18);
             this.label3.TabIndex = 4;
@@ -257,8 +257,8 @@
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(393, 132);
-            this.txtEmail.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtEmail.Location = new System.Drawing.Point(368, 132);
+            this.txtEmail.Margin = new System.Windows.Forms.Padding(2);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(144, 20);
             this.txtEmail.TabIndex = 36;
@@ -268,7 +268,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(333, 132);
+            this.label2.Location = new System.Drawing.Point(308, 132);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(48, 18);
             this.label2.TabIndex = 35;
@@ -282,7 +282,7 @@
             "Male",
             "Female"});
             this.comboBox1.Location = new System.Drawing.Point(662, 131);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(92, 21);
             this.comboBox1.TabIndex = 34;
@@ -301,7 +301,7 @@
             this.Gender,
             this.Email});
             this.dataGridView1.Location = new System.Drawing.Point(2, 194);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidth = 51;
@@ -369,7 +369,7 @@
             // txtAddress
             // 
             this.txtAddress.Location = new System.Drawing.Point(89, 132);
-            this.txtAddress.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtAddress.Margin = new System.Windows.Forms.Padding(2);
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(144, 20);
             this.txtAddress.TabIndex = 32;
